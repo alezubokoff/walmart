@@ -1,0 +1,9 @@
+**/.metadata
+**/.recommenders
+**/.classpath
+**/.project
+**/.gitignore
+**/.settings
+**/RemoteSystemsTempFiles/
+**/target
+*.class

@@ -1,0 +1,96 @@
+<#import "template.html" as template>
+<@template.template>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 titulo-resumo">
+		<h2>Resumo do pedido</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 resumo">
+		<div class="row dados-pedido">
+			<div class="col-md-6">
+				<h4>
+					<span>Número do Pedido:</span><span class="valor-monetario">348209384023</span>
+				</h4>
+				<p>Atenção: Você receberá um e-mail com a
+				confirmação e todos os detalhes do seu pedido.<br>
+				Por favor, verifique as configurações AntiSpam
+				do seu provedor de e-mail.</p>
+			</div>
+			<div class="col-md-6">
+				<h4>Forma de pagamento</h4>
+				<div class="row">
+					<div class="col-md-2">
+						<span class="icone-boleto"></span>
+					</div>
+					<div class="col-md-10 botao-wrapper">
+						<p>Boleto bancário<br>
+						Valor: ${carrinho.resumo.totalComDesconto?string.currency}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row dados-entrega">
+			<div class="col-md-6 dados-usuario">
+				<h4>
+					<span class="icone-usuario">Seus dados</span>
+				</h4>
+				<div class="row row-resumo">
+					<div class="col-md-6">
+						<p>John Doe<br>
+						(11)2164-3750</p>
+					</div>
+					<div class="col-md-6">
+						<p>john.doe@email.com</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<h4>
+					<span class="icone-casa">Endereço de entrega</span>
+				</h4>
+				<div class="row row-resumo">
+					<div class="col-md-12">
+						<p>Alameda Araguaia, 2751 - Barueri - SP, 06455-906</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h4>
+					<span class="icone-pacote">Entrega</span>
+				</h4>
+				<div class="row itens-resumo">
+					<div class="col-md-12">
+						<p class="resumo-data-entrega">Entrega em até 4 dias úteis</p>
+						<div class="row">
+							<span class="col-md-10 cabecalho-resumo">Descrição do produto</span>
+							<span class="col-md-2 cabecalho-resumo-quantidade">Quantidade</span>
+						</div>
+						<#list carrinho.pedidos as pedido>
+						<div class="row">
+							<span class="col-md-10 item-resumo">
+								• ${pedido.produto.nome}
+							</span>
+							<span class="col-md-2 item-resumo item-resumo-quantidade">
+								${pedido.quantidade}
+							</span>
+						</div>
+						</#list>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="row">
+			<div class="col-md-3 col-md-offset-9 botao-wrapper">
+				<a href="/carrinho" class="btn btn-default btn-block botao">Voltar para lista de produtos</a>
+			</div>
+		</div>
+	</div>
+</div>
+</@template.template>

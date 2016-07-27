@@ -1,0 +1,16 @@
+[
+	{
+		"valorMinimo": 700,
+		"valorDesconto": 0.15
+	},
+	
+	{
+		"valorMinimo": 600,
+		"valorDesconto": 0.10
+	},
+	
+	{
+		"valorMinimo": 500,
+		"valorDesconto": 0.05
+	}
+]

@@ -1,0 +1,75 @@
+Olá Marcelo,
+
+Segue o teste técnico como parte de nosso processo seletivo.
+
+Em tempo, seguem algumas considerações:
+
+  *   O tempo máximo para desenvolvimento do teste pelo candidato são de 10 dias corridos a partir do seu envio;
+
+Teste Técnico
+-
+
+O Walmart possui um site bastante conhecido pela sua rapidez, qualidade do design e experiência com o usuário. Para isso resolvemos propor que você crie parte dessa experiência como teste para a vaga de Full-Stack Developer. O fluxo e os requisitos a serem desenvolvidos estão descritos a seguir:
+
+[cid:29829218-79F2-48A1-B93D-B1FED87CC1CF]
+Para desenvolver esse fluxo, algumas telas devem ser criadas:
+- Cadastro de Produto.
+- Listagem dos Produto (Carrinho).
+- Conclusão de Compra (Checkout).
+Requisitos mínimos para a aplicação:
+- Usuário pode criar mais de um produto com o Nome e Valor como requisitos mínimos.
+- Aplicação deve exibir todos os produtos cadastrados e permitir que o usuário altere a quantidade de cada produto que deseja comprar na tela de Carrinho.
+- A compra mínima (soma de todos os valores e quantidades do produtos) deve ser de 200 reais, impossibilitando a ida para a tela de Conclusão de Compra no caso de valores menores.
+- Caso a compra total for maior que 400 reais, deve ser aplicado alguns dos descontos:
+     - Se maior que 500 reais, desconto de 5% no valor total da compra.
+     - Se maior que 600 reais, desconto de 10% no valor total da compra.
+     - Se maior que 700 reais, desconto de 15% no valor total da compra.
+- Caso seja entre 200 e 400 reais, não aplicar nenhum desconto.
+- Após os cálculos, exibir na tela de Conclusão de Compra o valor final da compra e o desconto obtido.
+Iremos analisar os seguintes detalhes:
+
+  *   Capacidade de resolver o problema da forma mais simples, utilizando o mínimo de código possível.
+  *   Manipulação correta dos valores e cálculos de desconto.
+  *   Organização da regra de negócio de uma forma coesa para as duas seguintes partes do problema:
+
+  *   Cálculo do somatório de produtos.
+  *   Cálculo do valor de desconto.
+
+  *   Capacidade de reprodução do layout, estilos e design sugerido nas telas do Carrinho e Checkout.
+  *   Criação da tela de cadastro nos padrões das outras duas telas.
+
+Detalhes do projeto:
+- Todo o projeto deve ser submetido no github ou outro similar que use GIT.
+- Não se esqueça de justificar as suas escolhas (de tecnologia, layout, etc...) no arquivo README que deve acompanhar sua solução. Além de nos informar como proceder para testarmos sua aplicação.
+
+Outras informações:
+- Documentação e testes serão avaliados também.
+- A utilização de ferramentas de geração de CRUD e helpers serão analisadas com critérios.
+- Junto ao teste deve conter como guia duas ilustrações (design) das telas de Carrinho e Checkout que gostaríamos que se baseasse para desenvolver as telas da aplicação. Seguir o mais fiel possível.
+
+
+
+Design das Telas
+
+
+Tela de Carrinho de Compras
+[cid:4BC2F119-CD3E-4DF8-BA36-703D84C77223]
+Tela de Conclusão de Compras
+[cid:C895A72C-2793-4096-BB87-1859CB7FBF37]
+
+Boa sorte!
+
+Bruno Siqueira
+IT Coordinator •  Transactional Systems
+
+55 11 94473-2609, 6º andar
+Avenida Tamboré, 267  •  Barueri - SP
+[cid:image001.png@01CF63DB.B9DD4EF0]<http://www.walmart.com.br/>
+Please consider the environment before printing this e-mail
+All information contained within this email is Walmart Confidential.
+
+[cid:image008.jpg@01CE39D9.ACEEF130]<https://www.linkedin.com/company/walmart-com-br?trk=company_name>
+
+
+
+This email and any files transmitted with it are confidential and intended solely for the individual or entity to whom they are addressed. If you have received this email in error destroy it immediately. *** Walmart Confidential ***

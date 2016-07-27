@@ -1,0 +1,28 @@
+<#import "template.html" as template>
+<@template.template>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 titulo-resumo">
+		<h2>Cadastro de produtos</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 cadastro">
+		<form action="carrinho" method="post">
+			<div class="form-group">
+				<label for="nomeProduto">Nome</label>
+				<input type="text" class="form-control" id="nomeProduto" name="nome" placeholder="Nome do produto">
+			</div>
+			<div class="form-group">
+				<label for="valorProduto">Valor</label>
+				<input type="text" class="form-control" id="valorProduto" name="valor" placeholder="Valor do produto">
+				<script>
+				  $(function() {
+					  $("#valorProduto").maskMoney({ prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
+				  })
+				</script>
+			</div>
+			<button type="submit" class="btn btn-default botao">Cadastrar</button>
+		</form>
+	</div>
+</div>
+</@template.template>
