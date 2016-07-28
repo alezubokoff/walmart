@@ -1,4 +1,4 @@
-package br.com.walmart.shopping.components;
+package br.com.walmart.shopping.components.api;
 
 import java.math.BigDecimal;
 

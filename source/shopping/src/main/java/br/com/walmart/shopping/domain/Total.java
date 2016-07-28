@@ -2,18 +2,22 @@ package br.com.walmart.shopping.domain;
 
 import java.math.BigDecimal;
 
-public class Resumo {
+public class Total {
+	
+	private BigDecimal limiteMinimo;
 	
 	private int quantidade;
 	private BigDecimal desconto;
 	private BigDecimal totalOriginal;
-	private BigDecimal totalComDesconto;
 	
-	public Resumo(int quantidade, BigDecimal desconto, BigDecimal totalOriginal, BigDecimal totalComDesconto) {
+	public Total(BigDecimal limiteMinimo) {
+		this.limiteMinimo = limiteMinimo;
+	}
+
+	public void atualizar(int quantidade, BigDecimal desconto, BigDecimal totalOriginal) {
 		this.quantidade = quantidade;
 		this.desconto = desconto;
 		this.totalOriginal = totalOriginal;
-		this.totalComDesconto = totalComDesconto;
 	}
 	
 	public int getQuantidade() {
@@ -29,7 +33,11 @@ public class Resumo {
 	}
 
 	public BigDecimal getTotalComDesconto() {
-		return totalComDesconto;
+		return totalOriginal.subtract(desconto);
+	}
+	
+	public boolean isPodeFinalizar() {
+		return getTotalComDesconto().compareTo(limiteMinimo) >= 0;
 	}
 	
 }

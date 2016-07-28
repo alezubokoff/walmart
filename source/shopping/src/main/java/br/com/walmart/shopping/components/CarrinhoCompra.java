@@ -6,31 +6,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import br.com.walmart.shopping.components.events.AtualizacaoCarrinho;
 import br.com.walmart.shopping.domain.Pedido;
 import br.com.walmart.shopping.domain.Produto;
-import br.com.walmart.shopping.domain.Resumo;
 
 @Component
 @Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 public class CarrinhoCompra implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	private CalculadoraDesconto calculadoraDesconto;
+	private final ApplicationEventPublisher publisher;
 	
 	private List<Pedido> pedidos;
 	
-	public CarrinhoCompra() {
-		pedidos = new ArrayList<>();
+	@Autowired
+	public CarrinhoCompra(ApplicationEventPublisher publisher) {
+		this.publisher = publisher;
+		this.pedidos = new ArrayList<>();
 	}
 	
 	public Pedido adicionarProduto(Produto produto) {
-		Pedido pedido = new Pedido(produto, 1);
+		return adicionarProduto(produto, 1);
+	}
+	
+	public Pedido adicionarProduto(Produto produto, int quantidade) {
+		Pedido pedido = new Pedido(produto, quantidade);
+		
 		pedidos.add(pedido);
+		notificarAtualizacao();
+		
 		return pedido;
 	}
 	
@@ -39,34 +48,31 @@ public class CarrinhoCompra implements Serializable {
 	}
 	
 	public Pedido adicionarProduto(String nome, BigDecimal valor, int quantidade) {
-		Pedido pedido = adicionarProduto(new Produto(nome, valor));
-		pedido.set(quantidade);
+		Pedido pedido = adicionarProduto(new Produto(nome, valor), quantidade);
 		return pedido;
 	}
 	
 	public Pedido adicionarQuantidade(int indicePedido) {
-		return pedidos.get(indicePedido).adicionar();
+		Pedido pedido = pedidos.get(indicePedido).adicionar();
+		notificarAtualizacao();
+		return pedido;
 	}
 	
 	public Pedido removerQuantidade(int indicePedido) {
-		return pedidos.get(indicePedido).remover();
+		Pedido pedido = pedidos.get(indicePedido).remover();
+		notificarAtualizacao();
+		return pedido;
 	}
 	
 	public Pedido alterarQuantidade(int indicePedido, int quantidade) {
-		return pedidos.get(indicePedido).set(quantidade);
+		Pedido pedido = pedidos.get(indicePedido).set(quantidade);
+		notificarAtualizacao();
+		return pedido;
 	}
 	
 	public void removerPedido(int indicePedido) {
 		pedidos.remove(indicePedido);
-	}
-	
-	public Resumo getResumo() {
-		int quantidade = obterQuantidadeTotal();
-		BigDecimal totalOriginal = obterPrecoTotal();
-		BigDecimal desconto = calculadoraDesconto.calcularDesconto(totalOriginal);
-		BigDecimal totalComDesconto = totalOriginal.subtract(desconto);
-		
-		return new Resumo(quantidade, desconto, totalOriginal, totalComDesconto);
+		notificarAtualizacao();
 	}
 	
 	public BigDecimal obterPrecoTotal() {
@@ -91,6 +97,11 @@ public class CarrinhoCompra implements Serializable {
 	
 	public List<Pedido> getPedidos() {
 		return pedidos;
+	}
+	
+	public void notificarAtualizacao() {
+		AtualizacaoCarrinho atualizacao = new AtualizacaoCarrinho(obterPrecoTotal(), obterQuantidadeTotal());
+		publisher.publishEvent(atualizacao);
 	}
 	
 }
