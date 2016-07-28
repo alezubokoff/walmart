@@ -20,7 +20,7 @@ public class CarrinhoCompra implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private CalculadoraDescontoFixo calculadoraDesconto;
+	private CalculadoraDesconto calculadoraDesconto;
 	
 	private List<Pedido> pedidos;
 	
@@ -44,41 +44,46 @@ public class CarrinhoCompra implements Serializable {
 		return pedido;
 	}
 	
-	public Pedido obterPedidoPorNomeProduto(String nomeProduto) {
-		for (Pedido pedido : pedidos) {
-			if (pedido.getProduto().getNome().equals(nomeProduto)) {
-				return pedido;
-			}
-		}
-		
-		return null;
+	public Pedido adicionarQuantidade(int indicePedido) {
+		return pedidos.get(indicePedido).adicionar();
 	}
 	
-	public void adicionarQuantidade(String nomeProduto) {
-		obterPedidoPorNomeProduto(nomeProduto).adicionar();
+	public Pedido removerQuantidade(int indicePedido) {
+		return pedidos.get(indicePedido).remover();
 	}
 	
-	public void removerQuantidade(String nomeProduto) {
-		obterPedidoPorNomeProduto(nomeProduto).remover();
+	public Pedido alterarQuantidade(int indicePedido, int quantidade) {
+		return pedidos.get(indicePedido).set(quantidade);
 	}
 	
-	public void alterarQuantidade(String nomeProduto, int quantidade) {
-		obterPedidoPorNomeProduto(nomeProduto).set(quantidade);
+	public void removerPedido(int indicePedido) {
+		pedidos.remove(indicePedido);
 	}
 	
 	public Resumo getResumo() {
-		BigDecimal totalOriginal = obterTotal();
+		int quantidade = obterQuantidadeTotal();
+		BigDecimal totalOriginal = obterPrecoTotal();
 		BigDecimal desconto = calculadoraDesconto.calcularDesconto(totalOriginal);
 		BigDecimal totalComDesconto = totalOriginal.subtract(desconto);
 		
-		return new Resumo(desconto, totalOriginal, totalComDesconto);
+		return new Resumo(quantidade, desconto, totalOriginal, totalComDesconto);
 	}
 	
-	public BigDecimal obterTotal() {
+	public BigDecimal obterPrecoTotal() {
 		BigDecimal total = BigDecimal.ZERO;
 		
 		for (Pedido pedido : pedidos) {
 			total = total.add(pedido.getTotal());
+		}
+		
+		return total;
+	}
+	
+	public int obterQuantidadeTotal() {
+		int total = 0;
+		
+		for (Pedido pedido : pedidos) {
+			total += pedido.getQuantidade();
 		}
 		
 		return total;

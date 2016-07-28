@@ -17,22 +17,25 @@ public class Pedido {
 		this.quantidade = quantidade;
 	}
 
-	public void adicionar() {
+	public Pedido adicionar() {
 		quantidade++;
+		return this;
 	}
 	
-	public void remover() {
+	public Pedido remover() {
 		if (quantidade > 0) {
 			quantidade--;
 		}
+		return this;
 	}
 	
-	public void set(int quantidade) {
+	public Pedido set(int quantidade) {
 		if (quantidade > 0) {
 			this.quantidade = quantidade;
 		} else {
 			this.quantidade = 0;
 		}
+		return this;
 	}
 	
 	public BigDecimal getTotal() {

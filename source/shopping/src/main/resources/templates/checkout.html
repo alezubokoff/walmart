@@ -10,11 +10,11 @@
 		<div class="row dados-pedido">
 			<div class="col-md-6">
 				<h4>
-					<span>Número do Pedido:</span><span class="valor-monetario">348209384023</span>
+					<span>NÃºmero do Pedido:</span><span class="valor-monetario">348209384023</span>
 				</h4>
-				<p>Atenção: Você receberá um e-mail com a
-				confirmação e todos os detalhes do seu pedido.<br>
-				Por favor, verifique as configurações AntiSpam
+				<p>AtenÃ§Ã£o: VocÃª receberÃ¡ um e-mail com a
+				confirmaÃ§Ã£o e todos os detalhes do seu pedido.<br>
+				Por favor, verifique as configuraÃ§Ãµes AntiSpam
 				do seu provedor de e-mail.</p>
 			</div>
 			<div class="col-md-6">
@@ -24,7 +24,7 @@
 						<span class="icone-boleto"></span>
 					</div>
 					<div class="col-md-10 botao-wrapper">
-						<p>Boleto bancário<br>
+						<p>Boleto bancÃ¡rio<br>
 						Valor: ${carrinho.resumo.totalComDesconto?string.currency}</p>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 			</div>
 			<div class="col-md-6">
 				<h4>
-					<span class="icone-casa">Endereço de entrega</span>
+					<span class="icone-casa">EndereÃ§o de entrega</span>
 				</h4>
 				<div class="row row-resumo">
 					<div class="col-md-12">
@@ -63,15 +63,15 @@
 				</h4>
 				<div class="row itens-resumo">
 					<div class="col-md-12">
-						<p class="resumo-data-entrega">Entrega em até 4 dias úteis</p>
+						<p class="resumo-data-entrega">Entrega em atÃ© 4 dias Ãºteis</p>
 						<div class="row">
-							<span class="col-md-10 cabecalho-resumo">Descrição do produto</span>
+							<span class="col-md-10 cabecalho-resumo">DescriÃ§Ã£o do produto</span>
 							<span class="col-md-2 cabecalho-resumo-quantidade">Quantidade</span>
 						</div>
 						<#list carrinho.pedidos as pedido>
 						<div class="row">
 							<span class="col-md-10 item-resumo">
-								• ${pedido.produto.nome}
+								&bull; ${pedido.produto.nome}
 							</span>
 							<span class="col-md-2 item-resumo item-resumo-quantidade">
 								${pedido.quantidade}
