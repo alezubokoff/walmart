@@ -1,72 +1,6 @@
 <#import "template.html" as template>
 <@template.template>
-<script>
-
-function incrementar(indicePedido) {
-	$.ajax({
-        url: 'pedido/' + indicePedido + '/incrementar',
-    	method: 'put'
-    }).then(function(resposta) {
-    	atualizar(indicePedido, resposta);
-    });
-}
-
-function decrementar(indicePedido) {
-	$.ajax({
-        url: 'pedido/' + indicePedido + '/decrementar',
-    	method: 'put'
-    }).then(function(resposta) {
-    	atualizar(indicePedido, resposta);
-    });
-}
-
-function alterarQuantidade(indicePedido, quantidade) {
-	$.ajax({
-        url: 'pedido/' + indicePedido + '/' + quantidade,
-    	method: 'put'
-    }).then(function(resposta) {
-    	atualizar(indicePedido, resposta);
-    });
-}
-
-function removerPedido(indicePedido) {
-	$.ajax({
-        url: 'pedido/' + indicePedido,
-    	method: 'delete'
-    }).then(function(resposta) {
-    	var pedido = $('#pedido_' + indicePedido)[0];
-    	pedido.parentNode.removeChild(pedido);
-    	        
-    	atualizarResumo(resposta);
-    });
-}
-
-function atualizar(indicePedido, resposta) {
-	if (resposta.pedido.quantidade == 0) {
-		removerPedido(indicePedido);
-	} else {
-		$('#quantidadePedido_' + indicePedido)[0].value = resposta.pedido.quantidade;
-		$('#totalPedido_' + indicePedido)[0].textContent = valorMonetario(resposta.pedido.total);
-	
-		atualizarResumo(resposta.resumo);
-	}
-}
-
-function atualizarResumo(resumo) {
-	$('#totalOriginal')[0].textContent = valorMonetario(resumo.totalOriginal);
-	$('#desconto')[0].textContent = valorMonetario(resumo.desconto);
-	$('#totalComDesconto')[0].textContent = valorMonetario(resumo.totalComDesconto);
-	$('#quantidadeItensTitulo')[0].textContent = resumo.quantidade;
-	$('#quantidadeItensSubtotal')[0].textContent = resumo.quantidade;
-	$('#botaoFinalizar')[0].style.display = (resumo.podeFinalizar ? 'block' : 'none');
-}
-
-function valorMonetario(valor) {
-	return 'R$ ' + Number(valor).toLocaleString('pt', { minimumFractionDigits: 2 });
-}
-
-</script>
-
+<script src="js/carrinho.js"></script>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1 titulo-pagina">
 		<h2>Meu carrinho (<span id="quantidadeItensTitulo">${total.resumo.quantidade}</span> itens)</h2>
@@ -95,20 +29,20 @@ function valorMonetario(valor) {
 				<span class="col-md-2 item-carrinho-preco">Por ${pedido.produto.valor?string.currency}</span>
 				<div class="col-md-2 item-carrinho-quantidade">
 					<div>
-						<a class="spinner spinner-button-left" href="#" onclick="decrementar(${pedido?index})">
+						<a class="spinner spinner-button-left" href="#" onclick="Carrinho.decrementar(${pedido?index})">
 							<span class="glyphicon glyphicon-minus spinner-icon" aria-hidden="true"></span>
 						</a>
 						
 						<input id="quantidadePedido_${pedido?index}" 
 							class="spinner spinner-input" type="text" 
 							value="${pedido.quantidade}" 
-							onchange="alterarQuantidade(${pedido?index}, this.value)" />
+							onchange="Carrinho.alterarQuantidade(${pedido?index}, this.value)" />
 						
-						<a class="spinner spinner-button-right" href="#" onclick="incrementar(${pedido?index})">
+						<a class="spinner spinner-button-right" href="#" onclick="Carrinho.incrementar(${pedido?index})">
 							<span class="glyphicon glyphicon-plus spinner-icon" aria-hidden="true"></span>
 						</a>
 					</div>
-					<a class="remover-item" href="#" onclick="removerPedido(${pedido?index})">Remover</a>
+					<a class="remover-item" href="#" onclick="Carrinho.removerPedido(${pedido?index})">Remover</a>
 				</div>
 				<span id="totalPedido_${pedido?index}" class="col-md-2 valor-monetario">${pedido.total?string.currency}</span>
 			</div>
