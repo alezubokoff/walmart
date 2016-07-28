@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.walmart.shopping.components.api.CalculadoraDesconto;
 import br.com.walmart.shopping.domain.Desconto;
 
 @Component

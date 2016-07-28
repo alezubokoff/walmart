@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.context.ApplicationEventPublisher;
 
 import br.com.walmart.shopping.components.CarrinhoCompra;
 
@@ -14,7 +16,7 @@ public class CarrinhoCompraTest {
 	
 	@Before
 	public void setup() {
-		carrinho = new CarrinhoCompra();
+		carrinho = new CarrinhoCompra(Mockito.mock(ApplicationEventPublisher.class));
 	}
 	
 	@Test
