@@ -4,14 +4,20 @@ import java.math.BigDecimal;
 
 public class Resumo {
 	
+	private int quantidade;
 	private BigDecimal desconto;
 	private BigDecimal totalOriginal;
 	private BigDecimal totalComDesconto;
 	
-	public Resumo(BigDecimal desconto, BigDecimal totalOriginal, BigDecimal totalComDesconto) {
+	public Resumo(int quantidade, BigDecimal desconto, BigDecimal totalOriginal, BigDecimal totalComDesconto) {
+		this.quantidade = quantidade;
 		this.desconto = desconto;
 		this.totalOriginal = totalOriginal;
 		this.totalComDesconto = totalComDesconto;
+	}
+	
+	public int getQuantidade() {
+		return quantidade;
 	}
 
 	public BigDecimal getDesconto() {

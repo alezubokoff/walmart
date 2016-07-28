@@ -13,11 +13,11 @@
 				<input type="text" class="form-control" id="nomeProduto" name="nome" placeholder="Nome do produto">
 			</div>
 			<div class="form-group">
-				<label for="valorProduto">Valor</label>
+				<label for="valorProduto">Valor (R$)</label>
 				<input type="text" class="form-control" id="valorProduto" name="valor" placeholder="Valor do produto">
 				<script>
 				  $(function() {
-					  $("#valorProduto").maskMoney({ prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
+					  $("#valorProduto").maskMoney({ allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
 				  })
 				</script>
 			</div>
