@@ -16,7 +16,7 @@ import br.com.walmart.shopping.domain.Desconto;
 @Component
 public class CalculadoraDescontoFixo implements CalculadoraDesconto {
 	
-	@Value("classpath:tabeladesconto.json")
+	@Value("classpath:/tabeladesconto.json")
 	private Resource tabelaDesconto;
 	
 	private Desconto[] descontos;
@@ -24,7 +24,7 @@ public class CalculadoraDescontoFixo implements CalculadoraDesconto {
 	@PostConstruct
 	public void carregarDescontos() throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		descontos = mapper.readValue(tabelaDesconto.getFile(), Desconto[].class);
+		descontos = mapper.readValue(tabelaDesconto.getInputStream(), Desconto[].class);
 	}
 	
 	public BigDecimal calcularDesconto(BigDecimal totalCompra) {
