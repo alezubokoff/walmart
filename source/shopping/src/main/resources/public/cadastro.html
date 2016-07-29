@@ -6,7 +6,6 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3 cadastro">
 		<form name="cadastroForm">
-			
 			<div class="form-group has-feedback" ng-class="{ 'has-error': campoNome.status == 'erro', 'has-success': campoNome.status == 'sucesso' }">
 				<label for="nomeProduto">Nome</label>
 				<input type="text" class="form-control" 
@@ -41,6 +40,14 @@
 			
 			<div class="alert alert-danger" ng-show="campoValor.status == 'erro'" role="alert">
 				{{campoValor.mensagem}}
+			</div>
+			
+			<div class="form-group" 
+				flow-init="{target: 'rest/upload'}"
+				flow-files-submitted="$flow.upload()"
+				flow-file-success="$file.msg = $message">
+				
+				<span class="btn btn-default" flow-btn>Carregar imagem...</span>
 			</div>
 			
 			<button type="submit" class="btn btn-default botao" ng-click="cadastrar()">Cadastrar</button>
