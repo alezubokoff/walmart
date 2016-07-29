@@ -20,6 +20,22 @@ public class CarrinhoCompraTest {
 	}
 	
 	@Test
+	public void quando_decrementar_para_zero_remover_pedido_do_carrinho() {
+		carrinho.adicionarProduto("TV", new BigDecimal("1299.99"));
+		carrinho.decrementarQuantidade(0);
+		
+		Assert.assertTrue(carrinho.getPedidos().isEmpty());
+	}
+	
+	@Test
+	public void quando_alterar_para_zero_remover_pedido_do_carrinho() {
+		carrinho.adicionarProduto("TV", new BigDecimal("1299.99"));
+		carrinho.alterarQuantidade(0, 0);
+		
+		Assert.assertTrue(carrinho.getPedidos().isEmpty());
+	}
+	
+	@Test
 	public void totalizar_preco() {
 		carrinho.adicionarProduto("TV", new BigDecimal("1299.99"), 3);
 		carrinho.adicionarProduto("Playstation 4", new BigDecimal("2782.89"), 1);

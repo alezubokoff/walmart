@@ -52,20 +52,30 @@ public class CarrinhoCompra implements Serializable {
 		return pedido;
 	}
 	
-	public Pedido adicionarQuantidade(int indicePedido) {
+	public Pedido incrementarQuantidade(int indicePedido) {
 		Pedido pedido = pedidos.get(indicePedido).adicionar();
 		notificarAtualizacao();
 		return pedido;
 	}
 	
-	public Pedido removerQuantidade(int indicePedido) {
+	public Pedido decrementarQuantidade(int indicePedido) {
 		Pedido pedido = pedidos.get(indicePedido).remover();
+		
+		if (pedido.getQuantidade() == 0) {
+			pedidos.remove(indicePedido);
+		}
+		
 		notificarAtualizacao();
 		return pedido;
 	}
 	
 	public Pedido alterarQuantidade(int indicePedido, int quantidade) {
 		Pedido pedido = pedidos.get(indicePedido).set(quantidade);
+		
+		if (pedido.getQuantidade() == 0) {
+			pedidos.remove(indicePedido);
+		}
+		
 		notificarAtualizacao();
 		return pedido;
 	}

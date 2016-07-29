@@ -1,5 +1,3 @@
-<#import "template.html" as template>
-<@template.template>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 titulo-resumo">
 		<h2>Resumo do pedido</h2>
@@ -25,7 +23,7 @@
 					</div>
 					<div class="col-md-10 botao-wrapper">
 						<p>Boleto bancário<br>
-						Valor: ${total.resumo.totalComDesconto?string.currency}</p>
+						Valor: {{carrinho.resumo.totalComDesconto | currency:"R$ ":2}}</p>
 					</div>
 				</div>
 			</div>
@@ -68,16 +66,14 @@
 							<span class="col-md-10 cabecalho-resumo">Descrição do produto</span>
 							<span class="col-md-2 cabecalho-resumo-quantidade">Quantidade</span>
 						</div>
-						<#list carrinho.pedidos as pedido>
-						<div class="row">
+						<div class="row" ng-repeat="pedido in carrinho.pedidos">
 							<span class="col-md-10 item-resumo">
-								&bull; ${pedido.produto.nome}
+								&bull; {{pedido.produto.nome}}
 							</span>
 							<span class="col-md-2 item-resumo item-resumo-quantidade">
-								${pedido.quantidade}
+								{{pedido.quantidade}}
 							</span>
 						</div>
-						</#list>
 					</div>
 				</div>
 			</div>
@@ -88,9 +84,8 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="row">
 			<div class="col-md-3 col-md-offset-9 botao-wrapper">
-				<a href="/carrinho" class="btn btn-default btn-block botao">Voltar para lista de produtos</a>
+				<a ng-click="voltarCarrinho()" class="btn btn-default btn-block botao">Voltar para lista de produtos</a>
 			</div>
 		</div>
 	</div>
 </div>
-</@template.template>

@@ -19,16 +19,24 @@ import br.com.walmart.shopping.domain.Total;
 @Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 public class Totalizador {
 	
-	@Autowired
-	private CalculadoraDesconto calculadoraDesconto;
+	private final CalculadoraDesconto calculadoraDesconto;
 	
 	@Value("${shopping.limite.minimo}")
 	private BigDecimal limiteMinimo;
 	
 	private Total resumo;
 	
+	@Autowired
+	public Totalizador(CalculadoraDesconto calculadoraDesconto) {
+		this.calculadoraDesconto = calculadoraDesconto;
+	}
+	
 	@PostConstruct
 	public void inicializar() {
+		inicializar(limiteMinimo);
+	}
+	
+	public void inicializar(BigDecimal limiteMinimo) {
 		resumo = new Total(limiteMinimo);
 	}
 	

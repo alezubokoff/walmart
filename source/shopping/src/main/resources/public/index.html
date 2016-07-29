@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="shopping">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title> Walmart </title>
+	
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="row cabecalho">
+			<span class="col-md-2 logo"></span>
+		</div>
+		
+		<div ng-view></div>
+		
+		<div class="rodape">
+			<span class="logo-rodape"></span>
+			<span class="social-media"></span>
+			<p>WMB COMÉRCIO ELETRÔNICO LTDA.</p>
+			<p>CNPJ/MF: 14.314.050/0001-58 Inscrição Estadual: 206.159.582.118</p>
+			<p>Endereço: Avenida Tamboré, 267, 8º andar, Alphaville, Barueri, SP, CEP 06460-000</p>
+			<a>atendimento@walmart.com.br</a>
+		</div>
+	</div>
+	
+	<script src="js/jquery.min.js"></script>
+    <script src="js/jquery.maskMoney.min.js" type="text/javascript"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/i18n/angular-locale_pt-br.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/angular.maskMoney.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/CadastroController.js"></script>
+    <script src="js/controllers/CarrinhoController.js"></script>
+    <script src="js/controllers/CheckoutController.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 titulo-resumo">
+		<h2>Cadastro de produtos</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 cadastro">
+		<form name="cadastroForm">
+			
+			<div class="form-group has-feedback" ng-class="{ 'has-error': nomeInvalido(), 'has-success': nomeValido() }">
+				<label for="nomeProduto">Nome</label>
+				<input type="text" class="form-control" 
+					name="nomeProduto" ng-model="produto.nome" 
+					placeholder="Nome do produto" required>
+				
+				<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
+					ng-show="nomeInvalido()"></span>
+					
+				<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+					ng-show="nomeValido()"></span>
+			</div>
+			
+			<div class="form-group has-feedback" ng-class="{ 'has-error': valorInvalido(), 'has-success': valorValido() }">
+				<label for="valorProduto">Valor (R$)</label>
+				<input type="text" mask-money class="form-control" 
+					name="valorProduto" ng-model="produto.valor" 
+					placeholder="Valor do produto" required>
+					
+				<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
+					ng-show="valorInvalido()"></span>
+					
+				<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+					ng-show="valorValido()"></span>
+			</div>
+			
+			<button type="submit" class="btn btn-default botao" ng-click="cadastrar()">Cadastrar</button>
+		</form>
+	</div>
+</div>
