@@ -1,0 +1,81 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1 titulo-pagina">
+		<h2>Meu carrinho ({{carrinho.resumo.quantidade}} itens)</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1 carrinho">
+		<div id="header" class="row cabecalho-carrinho">
+			<span class="col-md-6 item-cabecalho item-cabecalho-itens">item(s)</span>
+			<span class="col-md-2 item-cabecalho item-cabecalho-preco">preço</span>
+			<span class="col-md-2 item-cabecalho item-cabecalho-quantidade">quantidade</span>
+			<span class="col-md-2 item-cabecalho item-cabecalho-subtotal">subtotal</span>
+		</div>
+		
+		<div id="conteudo-carrinho">
+			<div ng-repeat="pedido in carrinho.pedidos" class="row item-carrinho-wrapper item-carrinho">
+				<div class="col-md-6 item-carrinho-items">
+					<div class="row item-carrinho">
+						<figure class="col-md-3">
+							<img alt="${pedido.produto.nome}" src="images/camera.png" class="img-responsive">
+						</figure>
+						<span class="col-md-9">{{pedido.produto.nome}}</span>
+					</div>
+				</div>
+				<span class="col-md-2 item-carrinho-preco">Por {{pedido.produto.valor | currency:"R$ ":2}}</span>
+				<div class="col-md-2 item-carrinho-quantidade">
+					<div>
+						<a class="spinner spinner-button-left" href="#" onclick="Carrinho.decrementar(${pedido?index})">
+							<span class="glyphicon glyphicon-minus spinner-icon" aria-hidden="true"></span>
+						</a>
+						
+						<input id="quantidadePedido_${pedido?index}" 
+							class="spinner spinner-input" type="text" 
+							ng-model="pedido.quantidade"
+							onchange="Carrinho.alterarQuantidade(${pedido?index}, this.value)" />
+						
+						<a class="spinner spinner-button-right" href="#" onclick="Carrinho.incrementar(${pedido?index})">
+							<span class="glyphicon glyphicon-plus spinner-icon" aria-hidden="true"></span>
+						</a>
+					</div>
+					<a class="remover-item" href="#" onclick="Carrinho.removerPedido(${pedido?index})">Remover</a>
+				</div>
+				<span id="totalPedido_${pedido?index}" class="col-md-2 valor-monetario">{{pedido.total}}</span>
+			</div>
+		</div>
+		
+		<div id="rodape-carrinho" class="row rodape-carrinho">
+			<div class="col-md-12">
+				<div class="row item-rodape">
+					<span class="col-md-2 col-md-offset-8">Subtotal ({{carrinho.resumo.quantidade}} itens):</span>
+					<span id="totalOriginal" class="col-md-2 valor-monetario">{{carrinho.resumo.totalOriginal}}</span>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-8">
+						<div class="row item-rodape desconto-carrinho-wrapper">
+							<span class="col-md-6">Descontos:</span>
+							<span id="desconto" class="col-md-6 valor-monetario">{{carrinho.resumo.desconto}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="row item-rodape total-rodape">
+					<span class="col-md-2 col-md-offset-8">Valor total:</span>
+					<span id="totalComDesconto" class="col-md-2 valor-monetario total-carrinho">{{carrinho.resumo.totalComDesconto}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="row">
+			<div class="col-md-3 botao-wrapper">
+				<a href="/" class="btn btn-default btn-block botao">Cadastrar novo produto</a>
+			</div>
+			
+			<div ng-show="carrinho.resumo.podeFinalizar" class="col-md-3 col-md-offset-6 botao-wrapper">
+				<a href="/checkout" class="btn btn-default btn-block botao">Finalizar compra</a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -17,7 +17,7 @@ import br.com.walmart.shopping.components.CarrinhoCompra;
 import br.com.walmart.shopping.components.Totalizador;
 import br.com.walmart.shopping.domain.Total;
 
-@Controller
+//@Controller
 public class ShoppingController {
 
 	@Autowired
@@ -26,28 +26,28 @@ public class ShoppingController {
 	@Autowired
 	private Totalizador totalizador;
 	
-	@RequestMapping("/index")
+	//@RequestMapping("/index")
 	public String index() {
 		return "novo-produto";
 	}
 	
-	@RequestMapping(path = "/carrinho", method = RequestMethod.POST)
+	//@RequestMapping(path = "/carrinho", method = RequestMethod.POST)
 	public String novoProduto(String nome, @NumberFormat BigDecimal valor) {
 		carrinho.adicionarProduto(nome, valor);
 		return "carrinho";
 	}
 	
-	@RequestMapping(path = "/carrinho", method = RequestMethod.GET)
+	//@RequestMapping(path = "/carrinho", method = RequestMethod.GET)
 	public String listar() {
 		return "carrinho";
 	}
 	
-	@RequestMapping(path = "/checkout", method = RequestMethod.GET)
+	//@RequestMapping(path = "/checkout", method = RequestMethod.GET)
 	public String finalizar() {
 		return "checkout";
 	}
 	
-	@RequestMapping(path = "/pedido/{indice}/incrementar", method = RequestMethod.PUT)
+	//@RequestMapping(path = "/pedido/{indice}/incrementar", method = RequestMethod.PUT)
 	public @ResponseBody Map<String, Object> incrementar(@PathVariable int indice) {
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("pedido", carrinho.adicionarQuantidade(indice));
@@ -55,7 +55,7 @@ public class ShoppingController {
 		return response;
 	}
 	
-	@RequestMapping(path = "/pedido/{indice}/decrementar", method = RequestMethod.PUT)
+	//@RequestMapping(path = "/pedido/{indice}/decrementar", method = RequestMethod.PUT)
 	public @ResponseBody Map<String, Object> decrementar(@PathVariable int indice) {
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("pedido", carrinho.removerQuantidade(indice));
@@ -63,7 +63,7 @@ public class ShoppingController {
 		return response;
 	}
 	
-	@RequestMapping(path = "/pedido/{indice}/{quantidade}", method = RequestMethod.PUT)
+	//@RequestMapping(path = "/pedido/{indice}/{quantidade}", method = RequestMethod.PUT)
 	public @ResponseBody Map<String, Object> alterarQuantidade(@PathVariable("indice") int indice, @PathVariable("quantidade") int quantidade) {
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("pedido", carrinho.alterarQuantidade(indice, quantidade));
@@ -71,7 +71,7 @@ public class ShoppingController {
 		return response;
 	}
 	
-	@RequestMapping(path = "/pedido/{indice}", method = RequestMethod.DELETE)
+	//@RequestMapping(path = "/pedido/{indice}", method = RequestMethod.DELETE)
 	public @ResponseBody Total removerPedido(@PathVariable("indice") int indice) {
 		carrinho.removerPedido(indice);
 		return totalizador.getResumo();
