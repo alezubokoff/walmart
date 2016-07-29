@@ -2,9 +2,13 @@ package br.com.walmart.shopping.domain;
 
 import java.math.BigDecimal;
 
+import org.springframework.format.annotation.NumberFormat;
+
 public class Produto {
 	
 	private String nome;
+	
+	@NumberFormat
 	private BigDecimal valor;
 	
 	public Produto() {
