@@ -7,30 +7,40 @@
 	<div class="col-md-6 col-md-offset-3 cadastro">
 		<form name="cadastroForm">
 			
-			<div class="form-group has-feedback" ng-class="{ 'has-error': nomeInvalido(), 'has-success': nomeValido() }">
+			<div class="form-group has-feedback" ng-class="{ 'has-error': campoNome.status == 'erro', 'has-success': campoNome.status == 'sucesso' }">
 				<label for="nomeProduto">Nome</label>
 				<input type="text" class="form-control" 
 					name="nomeProduto" ng-model="produto.nome" 
-					placeholder="Nome do produto" required>
+					placeholder="Nome do produto" ng-blur="validaNome()" 
+					maxlength="{{campoNome.maxLength}}" required>
 				
 				<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
-					ng-show="nomeInvalido()"></span>
+					ng-show="campoNome.status == 'erro'"></span>
 					
 				<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
-					ng-show="nomeValido()"></span>
+					ng-show="campoNome.status == 'sucesso'"></span>
 			</div>
 			
-			<div class="form-group has-feedback" ng-class="{ 'has-error': valorInvalido(), 'has-success': valorValido() }">
-				<label for="valorProduto">Valor (R$)</label>
-				<input type="text" mask-money class="form-control" 
+			<div class="alert alert-danger" ng-show="campoNome.status == 'erro'" role="alert">
+				{{campoNome.mensagem}}
+			</div>
+			
+			<div class="form-group has-feedback" ng-class="{ 'has-error': campoValor.status == 'erro', 'has-success': campoValor.status == 'sucesso' }">
+				<label for="valorProduto">Valor</label>
+				<input type="text" ui-money-mask class="form-control" 
 					name="valorProduto" ng-model="produto.valor" 
-					placeholder="Valor do produto" required>
+					placeholder="Valor do produto" ng-blur="validaValor()" 
+					maxlength="26" required>
 					
 				<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"
-					ng-show="valorInvalido()"></span>
+					ng-show="campoValor.status == 'erro'"></span>
 					
 				<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
-					ng-show="valorValido()"></span>
+					ng-show="campoValor.status == 'sucesso'"></span>
+			</div>
+			
+			<div class="alert alert-danger" ng-show="campoValor.status == 'erro'" role="alert">
+				{{campoValor.mensagem}}
 			</div>
 			
 			<button type="submit" class="btn btn-default botao" ng-click="cadastrar()">Cadastrar</button>

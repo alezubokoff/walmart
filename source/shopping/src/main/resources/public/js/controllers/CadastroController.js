@@ -3,28 +3,46 @@ function($scope, $location, $http) {
 	
 	$scope.produto = {};
 	
+	$scope.campoNome = {
+			maxLength: 50
+	};
+	
+	$scope.campoValor = {}
+	
 	$scope.cadastrar = function() {
-		if ($scope.nomeValido() && $scope.valorValido()) {
+		if ($scope.validaNome() & $scope.validaValor()) {
 			$http.post('/rest/produto', $scope.produto).success(function(data){
 				$location.url("/carrinho");
 			});
 		}
 	};
 	
-	$scope.nomeValido = function() {
-		return $scope.cadastroForm.nomeProduto.$touched && !$scope.cadastroForm.nomeProduto.$error.required;
+	$scope.validaNome = function() {
+		if ($scope.cadastroForm.nomeProduto.$valid) {
+			$scope.campoNome.status = 'sucesso';
+			
+			return true;
+		} else {
+			$scope.campoNome.status = 'erro';
+			$scope.campoNome.mensagem = 'Campo obrigatório.';
+			
+			return false;
+		}
 	}
 	
-	$scope.nomeInvalido = function() {
-		return $scope.cadastroForm.nomeProduto.$touched && $scope.cadastroForm.nomeProduto.$error.required;
-	}
-	
-	$scope.valorValido = function() {
-		return $scope.cadastroForm.valorProduto.$touched && !$scope.cadastroForm.valorProduto.$error.required;
-	}
-	
-	$scope.valorInvalido = function() {
-		return $scope.cadastroForm.valorProduto.$touched && $scope.cadastroForm.valorProduto.$error.required;
+	$scope.validaValor = function() {
+		console.log($scope.produto.valor)
+		
+		if ($scope.cadastroForm.valorProduto.$valid && $scope.produto.valor > 0) {
+			$scope.campoValor.status = 'sucesso';
+			
+			return true;
+		} else {
+			$scope.campoValor.status = 'erro';
+			$scope.campoValor.mensagem = 'Campo obrigatório.';
+			
+			return false;
+		}
 	}
 
 });
