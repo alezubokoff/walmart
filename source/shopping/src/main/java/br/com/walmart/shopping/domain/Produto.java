@@ -8,6 +8,8 @@ public class Produto {
 	
 	private String nome;
 	
+	private String imagem;
+	
 	@NumberFormat
 	private BigDecimal valor;
 	
@@ -33,6 +35,14 @@ public class Produto {
 	
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 }

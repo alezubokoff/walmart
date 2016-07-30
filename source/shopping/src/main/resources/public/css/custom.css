@@ -331,3 +331,12 @@ a:hover {
 	background-color: #528b19;
     border-color: transparent transparent #416d14;
 }
+
+.container-imagem {
+	border-left: 1px dotted #d2d2d2;
+}
+
+.imagem-produto {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

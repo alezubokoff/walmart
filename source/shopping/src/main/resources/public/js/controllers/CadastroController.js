@@ -7,7 +7,8 @@ function($scope, $location, $http) {
 			maxLength: 50
 	};
 	
-	$scope.campoValor = {}
+	$scope.campoValor = {};
+	$scope.campoImagem = {};
 	
 	$scope.cadastrar = function() {
 		if ($scope.validaNome() & $scope.validaValor()) {
@@ -43,6 +44,16 @@ function($scope, $location, $http) {
 			
 			return false;
 		}
+	}
+	
+	$scope.uploadComSucesso = function($file, $message, $flow) {
+		$scope.produto.imagem = $message;
+		$scope.campoImagem.status = 'sucesso';
+	}
+	
+	$scope.uploadComErro = function($file, $message, $flow) {
+		$scope.campoImagem.status = 'erro';
+		$scope.campoImagem.mensagem = $message;
 	}
 
 });

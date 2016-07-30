@@ -76,3 +76,4 @@ This email and any files transmitted with it are confidential and intended solel
 
 - Upload de foto.
 - Colocar os links das redes sociais e o mailto do atendimento@walmart.com.br
+- Mudar o $http para $resource
