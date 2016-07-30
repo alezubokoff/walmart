@@ -55,8 +55,12 @@
 						<span class="btn btn-default btn-block" flow-btn>Carregar imagem...</span>
 					</div>
 					<div class="imagem-produto">
-						<img ng-hide="produto.imagem" ng-src="images/camera.png" class="img-thumbnail" />
-						<img ng-show="produto.imagem" ng-src="/rest/imagem/{{produto.imagem}}" class="img-thumbnail" />
+						<div ng-if="produto.imagem">
+							<img ng-show="produto.imagem" ng-src="/rest/imagem/{{produto.imagem}}" class="img-thumbnail" />
+						</div>
+						<div ng-if="!produto.imagem">
+							<img ng-src="images/camera.png" class="img-thumbnail" />
+						</div>
 					</div>
 					
 					<div class="alert alert-danger" ng-show="campoImagem.status == 'erro'" role="alert">

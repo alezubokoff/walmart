@@ -74,6 +74,4 @@ All information contained within this email is Walmart Confidential.
 
 This email and any files transmitted with it are confidential and intended solely for the individual or entity to whom they are addressed. If you have received this email in error destroy it immediately. *** Walmart Confidential ***
 
-- Upload de foto.
 - Colocar os links das redes sociais e o mailto do atendimento@walmart.com.br
-- Mudar o $http para $resource
