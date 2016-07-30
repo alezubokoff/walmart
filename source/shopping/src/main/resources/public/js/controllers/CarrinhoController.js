@@ -1,16 +1,14 @@
 angular.module('shopping').controller('CarrinhoController',
-function($scope, $http, $location) {
+function($scope, $location, CarrinhoService, PedidoService) {
 	
-	$http.get('/rest/carrinho').success(function(data){
-		$scope.carrinho = data;
-	});
+	$scope.carrinho = CarrinhoService.query();
 	
 	$scope.incrementar = function(index) {
 		var pedido = $scope.carrinho.pedidos[index];
 		pedido.quantidade++;
 		
-		$http.put('/rest/pedido/' + index, pedido).success(function(data){
-			$scope.carrinho = data;
+		var carrinho = PedidoService.update({ indice: index }, pedido, function() {
+			$scope.carrinho = carrinho;
 		});
 	};
 	
@@ -18,20 +16,22 @@ function($scope, $http, $location) {
 		var pedido = $scope.carrinho.pedidos[index];
 		pedido.quantidade--;
 		
-		$http.put('/rest/pedido/' + index, pedido).success(function(data){
-			$scope.carrinho = data;
+		var carrinho = PedidoService.update({ indice: index }, pedido, function() {
+			$scope.carrinho = carrinho;
 		});
 	};
 	
 	$scope.remover = function(index) {
-		$http.delete('/rest/pedido/' + index).success(function(data){
-			$scope.carrinho = data;
+		var carrinho = PedidoService.delete({ indice: index }, null, function() {
+			$scope.carrinho = carrinho;
 		});
 	};
 	
 	$scope.alterar = function(index) {
-		$http.put('/rest/pedido/' + index, pedido).success(function(data){
-			$scope.carrinho = data;
+		var pedido = $scope.carrinho.pedidos[index];
+		
+		var carrinho = PedidoService.update({ indice: index }, pedido, function() {
+			$scope.carrinho = carrinho;
 		});
 	};
 	

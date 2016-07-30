@@ -1,9 +1,7 @@
 angular.module('shopping').controller('CheckoutController',
-function($scope, $http, $location) {
+function($scope, $location, CarrinhoService) {
 	
-	$http.get('/rest/carrinho').success(function(data){
-		$scope.carrinho = data;
-	});
+	$scope.carrinho = CarrinhoService.query();
 	
 	$scope.voltarCarrinho = function() {
 		$location.url('/carrinho');

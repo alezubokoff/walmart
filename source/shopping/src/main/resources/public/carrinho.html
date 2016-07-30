@@ -17,8 +17,12 @@
 				<div class="col-md-6 item-carrinho-items">
 					<div class="row item-carrinho">
 						<figure class="col-md-3">
-							<img alt="${pedido.produto.nome}" ng-show="pedido.produto.imagem" ng-src="/rest/imagem/{{pedido.produto.imagem}}" class="img-responsive">
-							<img alt="${pedido.produto.nome}" ng-hide="pedido.produto.imagem" ng-src="images/camera.png" class="img-responsive">
+							<div ng-if="pedido.produto.imagem">
+								<img alt="${pedido.produto.nome}" ng-src="/rest/imagem/{{pedido.produto.imagem}}" class="img-responsive">
+							</div>
+							<div ng-if="!pedido.produto.imagem">
+								<img alt="${pedido.produto.nome}" ng-hide="pedido.produto.imagem" ng-src="images/camera.png" class="img-responsive">
+							</div>
 						</figure>
 						<span class="col-md-9">{{pedido.produto.nome}}</span>
 					</div>
@@ -33,7 +37,7 @@
 						<input id="quantidadePedido_${pedido?index}" 
 							class="spinner spinner-input" type="text" 
 							ng-model="pedido.quantidade"
-							ng-change="alterar($index, pedido)" />
+							ng-change="alterar($index)" />
 						
 						<a class="spinner spinner-button-right" ng-click="incrementar($index, pedido)">
 							<span class="glyphicon glyphicon-plus spinner-icon" aria-hidden="true"></span>

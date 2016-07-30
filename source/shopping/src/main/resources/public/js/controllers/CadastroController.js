@@ -1,5 +1,5 @@
 angular.module('shopping').controller('CadastroController',
-function($scope, $location, $http) {
+function($scope, $location, ProdutoService) {
 	
 	$scope.produto = {};
 	
@@ -12,7 +12,7 @@ function($scope, $location, $http) {
 	
 	$scope.cadastrar = function() {
 		if ($scope.validaNome() & $scope.validaValor()) {
-			$http.post('/rest/produto', $scope.produto).success(function(data){
+			ProdutoService.save(null, $scope.produto, function(data){
 				$location.url("/carrinho");
 			});
 		}
@@ -32,8 +32,6 @@ function($scope, $location, $http) {
 	}
 	
 	$scope.validaValor = function() {
-		console.log($scope.produto.valor)
-		
 		if ($scope.cadastroForm.valorProduto.$valid && $scope.produto.valor > 0) {
 			$scope.campoValor.status = 'sucesso';
 			
