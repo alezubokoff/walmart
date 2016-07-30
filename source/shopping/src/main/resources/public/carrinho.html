@@ -17,7 +17,8 @@
 				<div class="col-md-6 item-carrinho-items">
 					<div class="row item-carrinho">
 						<figure class="col-md-3">
-							<img alt="${pedido.produto.nome}" src="images/camera.png" class="img-responsive">
+							<img alt="${pedido.produto.nome}" ng-show="pedido.produto.imagem" ng-src="/rest/imagem/{{pedido.produto.imagem}}" class="img-responsive">
+							<img alt="${pedido.produto.nome}" ng-hide="pedido.produto.imagem" ng-src="images/camera.png" class="img-responsive">
 						</figure>
 						<span class="col-md-9">{{pedido.produto.nome}}</span>
 					</div>

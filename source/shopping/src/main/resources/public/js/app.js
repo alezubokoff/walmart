@@ -1,4 +1,4 @@
-angular.module('shopping', ['ngRoute', 'ngResource', 'ui.utils.masks'])
+angular.module('shopping', ['ngRoute', 'ngResource', 'ui.utils.masks', 'flow'])
 	.config(function($routeProvider) {
 		$routeProvider.when('/cadastro', {
 			templateUrl: 'cadastro.html',
