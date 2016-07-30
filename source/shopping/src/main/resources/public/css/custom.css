@@ -27,11 +27,7 @@
 }
 
 .social-media {
-	background: url(../images/social-media.png) no-repeat;
-	height: 40px;
-    width: 264px;
-    display: block;
-    margin: 10px auto 30px auto;
+	margin: 10px auto 30px auto;
 }
 
 .icone-boleto {
@@ -339,4 +335,49 @@ a:hover {
 .imagem-produto {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.link-facebook {
+	background: url(../images/social-media.png) no-repeat;
+	background-position: 0;
+	height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.link-twitter {
+	background: url(../images/social-media.png) no-repeat;
+	background-position: -56px 0;
+	height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.link-googleplus {
+	background: url(../images/social-media.png) no-repeat;
+	background-position: -112px 0;
+	height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.link-instagram {
+	background: url(../images/social-media.png) no-repeat;
+	background-position: -168px 0;
+	height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.link-youtube {
+	background: url(../images/social-media.png) no-repeat;
+	background-position: -224px 0;
+	height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin: 0 8px;
 }
