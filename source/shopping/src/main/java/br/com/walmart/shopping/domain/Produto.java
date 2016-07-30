@@ -13,14 +13,13 @@ public class Produto {
 	@NumberFormat
 	private BigDecimal valor;
 	
-	public Produto() {
-	}
+	public Produto() {}
 	
 	public Produto(String nome, BigDecimal valor) {
 		this.nome = nome;
 		this.valor = valor;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}

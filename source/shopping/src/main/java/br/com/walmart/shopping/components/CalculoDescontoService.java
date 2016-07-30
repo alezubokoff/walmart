@@ -7,15 +7,14 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.walmart.shopping.components.api.CalculadoraDesconto;
 import br.com.walmart.shopping.domain.Desconto;
 
-@Component
-public class CalculadoraDescontoFixo implements CalculadoraDesconto {
+@Service
+public class CalculoDescontoService {
 	
 	@Value("classpath:/tabeladesconto.json")
 	private Resource tabelaDesconto;

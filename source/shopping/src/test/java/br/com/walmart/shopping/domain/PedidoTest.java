@@ -42,7 +42,7 @@ public class PedidoTest {
 	public void quando_setar_uma_quantidade_valida_quantidade_deve_assumir_o_novo_valor() {
 		Pedido pedido = new Pedido(new Produto("TV", new BigDecimal("3000.00")));
 		
-		pedido.set(3);
+		pedido.setQuantidade(3);
 		
 		Assert.assertEquals(3, pedido.getQuantidade());
 	}
@@ -51,7 +51,7 @@ public class PedidoTest {
 	public void quando_setar_uma_quantidade_invalida_quantidade_deve_ficar_como_zero() {
 		Pedido pedido = new Pedido(new Produto("TV", new BigDecimal("3000.00")));
 		
-		pedido.set(-5);
+		pedido.setQuantidade(-5);
 		
 		Assert.assertEquals(0, pedido.getQuantidade());
 	}
@@ -61,7 +61,7 @@ public class PedidoTest {
 		BigDecimal esperado = new BigDecimal("9837.42");
 		
 		Pedido pedido = new Pedido(new Produto("TV", new BigDecimal("3279.14")), 3);
-		BigDecimal total = pedido.getTotal();
+		BigDecimal total = pedido.getPrecoTotal();
 		
 		Assert.assertEquals(esperado, total);
 	}
