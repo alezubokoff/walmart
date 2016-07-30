@@ -10,14 +10,14 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.walmart.shopping.Shopping;
-import br.com.walmart.shopping.components.CalculadoraDescontoFixo;
+import br.com.walmart.shopping.components.CalculoDescontoService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Shopping.class)
-public class CalculadoraDescontoFixoTest {
+public class CalculoDescontoServiceTest {
 	
 	@Autowired
-	private CalculadoraDescontoFixo calculadora;
+	private CalculoDescontoService calculadora;
 	
 	@Test
 	public void quando_compra_maior_que_500_reais_desconto_de_5_por_cento_no_valor_da_compra() {
