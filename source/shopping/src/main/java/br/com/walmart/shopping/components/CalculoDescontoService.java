@@ -24,6 +24,7 @@ public class CalculoDescontoService {
 	@PostConstruct
 	public void carregarDescontos() throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
+		// nao deve usar getFile() pois nao funciona para ler dentro de um jar.
 		descontos = mapper.readValue(tabelaDesconto.getInputStream(), Desconto[].class);
 	}
 	
